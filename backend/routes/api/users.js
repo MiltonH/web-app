@@ -23,8 +23,14 @@ router.put('/user', auth.required, function(req, res, next){
     if(typeof req.body.user.email !== 'undefined'){
       user.email = req.body.user.email;
     }
-    if(typeof req.body.user.bio !== 'undefined'){
-      user.bio = req.body.user.bio;
+    if(typeof req.body.user.club !== 'undefined'){
+      user.club = req.body.user.club;
+    }
+    if(typeof req.body.user.division !== 'undefined'){
+      user.division = req.body.user.division;
+    }
+    if(typeof req.body.user.category !== 'undefined'){
+      user.category = req.body.user.category;
     }
     if(typeof req.body.user.image !== 'undefined'){
       user.image = req.body.user.image;

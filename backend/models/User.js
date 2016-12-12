@@ -7,7 +7,9 @@ var secret = require('../config').secret;
 var UserSchema = new mongoose.Schema({
   username: {type: String, lowercase: true, unique: true, required: [true, "can't be blank"], match: [/^[a-zA-Z0-9]+$/, 'is invalid'], index: true},
   email: {type: String, lowercase: true, unique: true, required: [true, "can't be blank"], match: [/\S+@\S+\.\S+/, 'is invalid'], index: true},
-  bio: String,
+  club: String,
+  division: String,
+  category: String,
   image: String,
   favorites: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Article' }],
   following: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
@@ -50,7 +52,9 @@ UserSchema.methods.toAuthJSON = function(){
 UserSchema.methods.toProfileJSONFor = function(user){
   return {
     username: this.username,
-    bio: this.bio,
+    club: this.club,
+    division: this.division,
+    category: this.category,
     image: this.image || 'https://static.productionready.io/images/smiley-cyrus.jpg',
     following: user ? user.isFollowing(this._id) : false
   };

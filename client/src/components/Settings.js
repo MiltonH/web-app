@@ -12,7 +12,9 @@ class SettingsForm extends React.Component {
     this.state = {
       image: '',
       username: '',
-      bio: '',
+      club: '',
+      division: '',
+      category: '',
       email: '',
       password: ''
     };
@@ -40,7 +42,9 @@ class SettingsForm extends React.Component {
       Object.assign(this.state, {
         image: this.props.currentUser.image || '',
         username: this.props.currentUser.username,
-        bio: this.props.currentUser.bio,
+        club: this.props.currentUser.club,
+        division: this.props.currentUser.division,
+        category: this.props.currentUser.category,
         email: this.props.currentUser.email
       });
     }
@@ -51,7 +55,9 @@ class SettingsForm extends React.Component {
       this.setState(Object.assign({}, this.state, {
         image: nextProps.currentUser.image || '',
         username: nextProps.currentUser.username,
-        bio: nextProps.currentUser.bio,
+        club: nextProps.currentUser.club,
+        division: nextProps.currentUser.division,
+        category: nextProps.currentUser.category,
         email: nextProps.currentUser.email
       }));
     }
@@ -81,13 +87,33 @@ class SettingsForm extends React.Component {
           </fieldset>
 
           <fieldset className="form-group">
-            <textarea
+            <input
               className="form-control form-control-lg"
-              rows="8"
-              placeholder="Short bio about you"
-              value={this.state.bio}
-              onChange={this.updateState('bio')}>
-            </textarea>
+              type="text"
+              placeholder="Clubname"
+              value={this.state.club}
+              onChange={this.updateState('club')}>
+            </input>
+          </fieldset>
+
+          <fieldset className="form-group">
+            <input
+              className="form-control form-control-lg"
+              type="text"
+              placeholder="Division"
+              value={this.state.division}
+              onChange={this.updateState('division')}>
+            </input>
+          </fieldset>
+
+          <fieldset className="form-group">
+            <input
+              className="form-control form-control-lg"
+              type="text"
+              placeholder="Category"
+              value={this.state.category}
+              onChange={this.updateState('category')}>
+            </input>
           </fieldset>
 
           <fieldset className="form-group">

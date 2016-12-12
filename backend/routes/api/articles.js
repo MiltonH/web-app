@@ -167,8 +167,8 @@ router.put('/:article', auth.required, function(req, res, next) {
       req.article.description = req.body.article.description;
     }
 
-    if(typeof req.body.article.body !== 'undefined'){
-      req.article.body = req.body.article.body;
+    if(typeof req.body.article.scores !== 'undefined'){
+      req.article.scores = req.body.article.scores;
     }
 
     req.article.save().then(function(article){

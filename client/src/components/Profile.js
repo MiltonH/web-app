@@ -123,7 +123,8 @@ class Profile extends React.Component {
 
                 <img src={profile.image} className="user-img" />
                 <h4>{profile.username}</h4>
-                <p>{profile.bio}</p>
+                <p>{profile.club}</p>
+                <p>{profile.division} {profile.category}</p>
 
                 <EditProfileSettings isUser={isUser} />
                 <FollowUserButton
