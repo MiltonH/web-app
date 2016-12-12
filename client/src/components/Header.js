@@ -1,27 +1,93 @@
-import React from 'react';
-import { Navbar, Nav, NavItem } from 'react-bootstrap';
+'use strict';
 
-export default React.createClass({
-  render: function(){
-    return    <div className="Header">
-      <Navbar inverse collapseOnSelect>
-    <Navbar.Header>
-      <Navbar.Brand>
-        <a href="#">ArcheryComp</a>
-      </Navbar.Brand>
-      <Navbar.Toggle />
-    </Navbar.Header>
-    <Navbar.Collapse>
-      <Nav>
-        <NavItem eventKey={1} href="#">Link</NavItem>
-        <NavItem eventKey={2} href="#">Link</NavItem>
-      </Nav>
-      <Nav pullRight>
-        <NavItem eventKey={1} href="#">Register</NavItem>
-        <NavItem eventKey={2} href="#">Login</NavItem>
-      </Nav>
-    </Navbar.Collapse>
-  </Navbar>
-    </div>
+import React from 'react';
+import { Link } from 'react-router';
+
+const LoggedOutView = props => {
+  if (!props.currentUser) {
+    return (
+      <ul className="nav navbar-nav pull-xs-right">
+
+        <li className="nav-item">
+          <Link to="/" className="nav-link">
+            Home
+          </Link>
+        </li>
+
+        <li className="nav-item">
+          <Link to="login" className="nav-link">
+            Sign in
+          </Link>
+        </li>
+
+        <li className="nav-item">
+          <Link to="register" className="nav-link">
+            Sign up
+          </Link>
+        </li>
+
+      </ul>
+    );
   }
-});
+  return null;
+};
+
+const LoggedInView = props => {
+  if (props.currentUser) {
+    return (
+      <ul className="nav navbar-nav pull-xs-right">
+
+        <li className="nav-item">
+          <Link to="" className="nav-link">
+            Home
+          </Link>
+        </li>
+
+        <li className="nav-item">
+          <Link to="editor" className="nav-link">
+            <i className="ion-compose"></i>&nbsp;New Post
+          </Link>
+        </li>
+
+        <li className="nav-item">
+          <Link to="settings" className="nav-link">
+            <i className="ion-gear-a"></i>&nbsp;Settings
+          </Link>
+        </li>
+
+        <li className="nav-item">
+          <Link
+            to={`@${props.currentUser.username}`}
+            className="nav-link">
+            <img src={props.currentUser.image} className="user-pic" />
+            {props.currentUser.username}
+          </Link>
+        </li>
+
+      </ul>
+    );
+  }
+
+  return null;
+};
+
+class Header extends React.Component {
+  render() {
+    return (
+      <nav className="navbar navbar-light">
+        <div className="container">
+
+          <Link to="/" className="navbar-brand">
+            {this.props.appName.toLowerCase()}
+          </Link>
+
+          <LoggedOutView currentUser={this.props.currentUser} />
+
+          <LoggedInView currentUser={this.props.currentUser} />
+        </div>
+      </nav>
+    );
+  }
+}
+
+export default Header;

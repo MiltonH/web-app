@@ -1,13 +1,24 @@
-import {Map} from 'immutable';
+'use strict';
 
-function setState(state, newState) {
-  return state.merge(newState);
-}
+import article from './reducers/article';
+import articleList from './reducers/articleList';
+import auth from './reducers/auth';
+import { combineReducers } from 'redux';
+import common from './reducers/common';
+import editor from './reducers/editor';
+import home from './reducers/home';
+import profile from './reducers/profile';
+import profileFavorites from './reducers/profileFavorites';
+import settings from './reducers/settings';
 
-export default function(state = Map(), action) {
-  switch (action.type) {
-  case 'SET_STATE':
-    return setState(state, action.state);
-  }
-  return state;
-}
+export default combineReducers({
+  article,
+  articleList,
+  auth,
+  common,
+  editor,
+  home,
+  profile,
+  profileFavorites,
+  settings
+});

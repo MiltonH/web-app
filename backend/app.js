@@ -25,7 +25,7 @@ app.use(bodyParser.json());
 app.use(require('method-override')());
 app.use(express.static(__dirname + '/public'));
 
-app.use(session({ secret: 'archeryComp', cookie: { maxAge: 60000 }, resave: false, saveUninitialized: false  }));
+app.use(session({ secret: 'conduit', cookie: { maxAge: 60000 }, resave: false, saveUninitialized: false  }));
 
 if (!isProduction) {
   app.use(errorhandler());
@@ -34,12 +34,13 @@ if (!isProduction) {
 if(isProduction){
   mongoose.connect(process.env.MONGODB_URI);
 } else {
-  mongoose.connect('mongodb://localhost/archeryComp');
+  mongoose.connect('mongodb://localhost/conduit');
   mongoose.set('debug', true);
 }
 
 require('./models/User');
-require('./models/Scoresheet');
+require('./models/Article');
+require('./models/Comment');
 require('./config/passport');
 
 app.use(require('./routes'));
@@ -79,6 +80,6 @@ app.use(function(err, req, res, next) {
 });
 
 // finally, let's start our server...
-var server = app.listen( process.env.PORT || 3001, function(){
+var server = app.listen( process.env.PORT || 3000, function(){
   console.log('Listening on port ' + server.address().port);
 });
