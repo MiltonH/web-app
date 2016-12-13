@@ -7,6 +7,7 @@ import React from 'react';
 import agent from '../../agent';
 import { connect } from 'react-redux';
 import marked from 'marked';
+import ScoreDetail from './ScoreDetail';
 
 const mapStateToProps = state => ({
   ...state.article,
@@ -37,7 +38,7 @@ class Article extends React.Component {
       return null;
     }
 
-    const markup = { __html: marked(this.props.article.scores[0], { sanitize: true }) };
+    // const markup = { __html: marked(this.props.article.scores[0], { sanitize: true }) };
     const canModify = this.props.currentUser &&
       this.props.currentUser.username === this.props.article.author.username;
     return (
@@ -59,7 +60,8 @@ class Article extends React.Component {
           <div className="row article-content">
             <div className="col-xs-12">
 
-              <div dangerouslySetInnerHTML={markup}></div>
+              {/* <div dangerouslySetInnerHTML={markup}></div> */}
+            <ScoreDetail scores={this.props.article.scores.split(",") || []}/>
 
               <ul className="tag-list">
                 {

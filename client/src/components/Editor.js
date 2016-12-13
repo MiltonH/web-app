@@ -119,7 +119,7 @@ class Editor extends React.Component {
                     <textarea
                       className="form-control"
                       rows="8"
-                      placeholder="Write your Scores"
+                      placeholder="Write your Scores divided by ,"
                       value={this.props.scores}
                       onChange={this.changeScores}>
                     </textarea>
