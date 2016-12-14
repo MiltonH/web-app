@@ -39,7 +39,7 @@ export const ScoreDetail = React.createClass({
   },
   render: function(){
     return   (
-      <div >
+      <div className="scoredetail">
         <table className="table table-bordered table-striped">
           <tbody>
           <tr>
